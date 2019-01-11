@@ -1,0 +1,443 @@
+<html>
+
+<head>
+<style type="text/css">
+.inline {
+  background-color: #f7f7f7;
+  border:solid 1px #B0B0B0;
+}
+.error {
+	font-weight: bold;
+	color: #FF0000;
+}
+.warning {
+	font-weight: bold;
+}
+.message {
+	font-style: italic;
+}
+.source, .output, .warning, .error, .message {
+	padding: 0 1em;
+  border:solid 1px #F7F7F7;
+}
+.source {
+  background-color: #f5f5f5;
+}
+.left {
+  text-align: left;
+}
+.right {
+  text-align: right;
+}
+.center {
+  text-align: center;
+}
+.hl.num {
+  color: #AF0F91;
+}
+.hl.str {
+  color: #317ECC;
+}
+.hl.com {
+  color: #AD95AF;
+  font-style: italic;
+}
+.hl.opt {
+  color: #000000;
+}
+.hl.std {
+  color: #585858;
+}
+.hl.kwa {
+  color: #295F94;
+  font-weight: bold;
+}
+.hl.kwb {
+  color: #B05A65;
+}
+.hl.kwc {
+  color: #55aa55;
+}
+.hl.kwd {
+  color: #BC5A65;
+  font-weight: bold;
+}
+</style>
+<title>SQL Bridge Assignment 3</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<style>
+.column-left{
+  float: left;
+  width: 4%;
+  text-align: center;
+}
+.column-center{
+  display: inline-block;
+  width: 96%;
+  text-align: left;
+}
+.h1-maroon{
+  color:#990000;
+}
+</style>
+
+</head>
+
+<body>
+
+<br />
+
+<div class="w3-sidebar w3-collapse w3-white w3-animate-left w3-large" style="z-index:3;width:300px;" id="mySidebar">
+
+<div class="w3-bar w3-blue w3-opacity w3-center">
+  <a class="w3-bar-item w3-button w3-hover-gray w3-opacity" style="width:33.33%" href="javascript:void(0)" onclick="openNav('nav01')">
+  <i class="fa fa-bars w3-xlarge"></i></a>
+  <a href="https://www.youtube.com/user/CUNYSPS" class="w3-bar-item w3-button" style="width:33.33%" target="_blank">
+  <img src="https://sps.cuny.edu/sites/all/themes/cuny/assets/img/icon-youtube.png" ></a>
+  <a class="w3-bar-item w3-button w3-hover-grey w3-opacity" style="width:33.33%" href="javascript:void(0)" onclick="openNav('nav03')">
+  <i class="fa fa-bars w3-xlarge"></i></a>
+</div>
+
+<div id="nav01" class="w3-bar-block">
+  <a class="w3-button w3-hover-blue w3-opacity w3-hide-large w3-large w3-right" href="javascript:void(0)" onclick="w3_close()">×</a>
+  <!-- <a class="w3-bar-item w3-button w3-border-bottom w3-large" href="#"><img src="https://www.rstudio.com/wp-content/uploads/2016/09/RStudio-Logo-Blue-Gray-125.png" style="width:65%;"></a> -->
+    <a class="w3-bar-item w3-button w3-border-bottom w3-large" href="https://sps.cuny.edu/" target="_blank"><img src="https://sps.cuny.edu/sites/all/themes/cuny/assets/img/header_logo.png" style="width:80%; padding-top: 10px; padding-bottom: 10px; height: 72px;"></a>
+  <a class="w3-bar-item w3-button w3-hover-blue w3-opacity" href="#1">Design</a>
+  <a class="w3-bar-item w3-button w3-hover-blue w3-opacity" href="#2">Create Objects</a>
+  <a class="w3-bar-item w3-button w3-hover-blue w3-opacity" href="#3">SQL Statements</a>
+</div>
+
+<div id="nav02">
+  <a class="w3-bar-item w3-button" target="_blank" href="tryw3css_templates_black.htm"><img src="img_demo_black.png" style="width:100%;"></a>
+  <a class="w3-bar-item w3-button" target="_blank" href="tryw3css_examples_album.htm"><img src="img_demo_summer.jpg" style="width:100%;"></a>
+  <a class="w3-bar-item w3-button" target="_blank" href="tryw3css_examples_blog.htm"><img src="img_demo_blog.jpg" style="width:100%;"></a>
+</div>
+
+
+<div id="nav03" class="w3-bar-block">
+  <a class="w3-button w3-hover-blue w3-opacity w3-hide-large w3-large w3-right" href="https://sps.cuny.edu/" target="_blank"><img src="https://sps.cuny.edu/sites/all/themes/cuny/assets/img/header_logo.png" onclick="w3_close()">×</a>
+  <!-- <a class="w3-bar-item w3-button w3-border-bottom w3-large" href="#"><img src="https://www.rstudio.com/wp-content/uploads/2016/09/RStudio-Logo-Blue-Gray-125.png" style="width:65%;"></a> -->
+    <a class="w3-bar-item w3-button w3-border-bottom w3-large Rlogo" href="https://www.rstudio.com/"><img src="https://www.rstudio.com/wp-content/uploads/2016/09/RStudio-Logo-Blue-Gray-125.png" target="_blank" style="width:80%; padding-top: 10px; padding-bottom: 10px; height: 72px;"></a>
+  <a class="w3-bar-item w3-button w3-hover-blue w3-opacity" href="http://rpubs.com/kleberperez/452853" target="_blank">Introduction to RMarkdown</a>
+  <a class="w3-bar-item w3-button w3-hover-blue w3-opacity" href="http://rpubs.com/kleberperez/453661" target="_blank">R Bridge Week 1</a>
+  <a class="w3-bar-item w3-button w3-hover-blue w3-opacity" href="http://rpubs.com/kleberperez/455298" target="_blank">R Bridge Week 2</a>
+  <a class="w3-bar-item w3-button w3-hover-blue w3-opacity" href="http://rpubs.com/kleberperez/457152" target="_blank">R Bridge Week 3</a>
+    <a class="w3-bar-item w3-button w3-hover-blue w3-opacity" href="http://rpubs.com/kleberperez/454603" target="_blank">R Bridge - HealthData.gov</a>
+  <a class="w3-bar-item w3-button w3-hover-blue w3-opacity" <a href="http://rpubs.com/kleberperez/453530" target="_blank">SQL Bridge Hands On</a>
+  <a class="w3-bar-item w3-button w3-hover-blue w3-opacity" href="http://rpubs.com/kleberperez/454125" target="_blank">SQL Bridge Week 1</a>
+  <a class="w3-bar-item w3-button w3-hover-blue w3-opacity" href="http://rpubs.com/kleberperez/455705" target="_blank">SQL Bridge Week 2</a>
+    <a class="w3-bar-item w3-button w3-hover-blue w3-opacity" href="http://rpubs.com/kleberperez/457452" target="_blank">SQL Bridge Week 3</a>
+  <a class="w3-bar-item w3-button w3-hover-blue w3-opacity" href="http://rpubs.com/kleberperez/454937" target="_blank">Math Bridge Homework 1</a>
+  <a class="w3-bar-item w3-button w3-hover-blue w3-opacity" href="http://rpubs.com/kleberperez/456049" target="_blank">Math Bridge Homework 2</a>
+</div>
+</div>
+
+<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" id="myOverlay"></div>
+
+<div class="w3-main" style="margin-left:300px;"> 
+
+<div class="w3-top w3-theme w3-large w3-hide-large">
+  <i class="fa fa-bars w3-button w3-blue w3-opacity w3-xlarge" onclick="w3_open()"></i>
+</div>
+
+<header class="w3-container w3-blue w3-opacity w3-opacity w3-center">
+  <h3 class="w3-xxlarge w3-padding">SQL Bridge Week 3 Assignment</h3>
+  <a class="w3-bar-item w3-button w3-hover-blue w3-opacity w3-opacity w3-padding" href="https://www.linkedin.com/in/kleberperez/" target="_blank">
+    <span class="w3-large w3-padding w3-hover-sand">Kleber Perez</span>
+  </a>
+</header>
+
+<div class="w3-container w3-padding-large w3-section w3-light-grey">
+  <h1 class="h1-maroon w3-opacity" >Project: Building a Relational Database Management System</h1> 
+  <h4 class="w3-opacity w3-code ">This project is where you show off your ability to (1) translate a business requirement into a database design, (2) design a database using one-to-many and many-to-many relationships, and (3) know when to use LEFT and/or RIGHT JOINs to build result sets for reporting.
+  </h4">
+  <h4 class="w3-opacity w3-code ">
+      An organization grants key-card access to rooms based on groups that key-card holders belong to. 
+      You may assume that users below to only one group. 
+      Your job is to design the database that supports the key-card system. 
+    </h4> <br />
+    
+  <h6 class="w3-opacity"><em>You may want to first click the below links.</em></h6>
+  <a class="w3-button w3-blue w3-opacity w3-hover-white" href="https://rmarkdown.rstudio.com/lesson-1.html">Learn RMarkdown</a>
+  <a class="w3-button w3-blue w3-opacity w3-hover-white" href="https://dev.mysql.com/doc/workbench/en/wb-creating-eer-diagram.html">Learn MySQL EER</a>
+  <p class="w3-large">
+  <p>
+  
+<!-- QUESTION 1 -->
+  <div id="1" class="column-left w3-code cssHigh notranslate w3-hover-sand w3-border-0">
+    <span>1</span>
+  </div>
+  <div class="column-center w3-code w3-button w3-hover-blue w3-opacity w3-padding-large w3-section w3-light-grey">
+
+    <span class="h1-maroon">
+      <strong>Design</strong>
+    </span> 
+    <br />
+    <p>
+       There are six users, and four groups. <br />
+       Modesto and Ayine are in group “I.T.”  Christopher and Cheong woo are in group “Sales”. <br />
+       There are four rooms:  “101”, “102”, “Auditorium A”, and “Auditorium B”. <br />
+       Saulat is in group “Administration.”  Group “Operations” currently doesn’t have any users assigned. <br />  
+       I.T. should be able to access Rooms 101 and 102.  Sales should be able to access Rooms 102 and Auditorium A. <br /> 
+       Administration does not have access to any rooms. <br />
+       Heidy is a new employee, who has not yet been assigned to any group.
+    </p> 
+    <br />
+    
+  </div>
+
+  <div class="column-left w3-border-0">
+    <span>&nbsp;</span>
+  </div>
+  <div class="column-center w3-code w3-button w3-opacity">
+    
+    <div class="img-fluid img-thumbnail ">
+    
+<div class="chunk" id="unnamed-chunk-1"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl std">knitr</span><span class="hl opt">::</span><span class="hl kwd">include_graphics</span><span class="hl std">(</span><span class="hl str">&quot;images/ERDWeek3.png&quot;</span><span class="hl std">)</span>
+</pre></div>
+</div><div class="rimage default"><img src="images/ERDWeek3.png" title="plot of chunk unnamed-chunk-1" alt="plot of chunk unnamed-chunk-1" class="plot" /></div></div>
+
+<br />
+  <a class="w3-button w3-theme w3-blue w3-opacity w3-hover-white" href="https://github.com/kleberperez1/SQL-Bridge-Week-3/blob/master/ERDWeek3.png" target="_blank">Click here to show ERD on GitHub</a>
+
+    </div>
+  </div>
+  
+  <a class="w3-button w3-theme w3-blue w3-opacity w3-hover-white" href="https://dev.mysql.com/doc/workbench/en/wb-creating-eer-diagram.html" target="_blank">Try it Yourself</a>
+</div>
+<!-- END QUESTION 1 -->
+
+<p class="w3-white">&nbsp;</p>
+
+<div class="w3-container w3-padding-large w3-section w3-light-grey">
+<!-- QUESTION 2 -->
+  <div id="2" class="column-left w3-code cssHigh notranslate w3-hover-sand w3-border-0">
+    <span>2</span>
+  </div>
+  <div class="column-center w3-code w3-button w3-hover-blue w3-opacity">
+    <span class="h1-maroon">
+      <strong>Create database, tables and relationships</strong>
+    </span> <br />
+    <span>
+      After you determine the tables any relationships between the tables <br />
+      (One to many? Many to one? Many to many?), you should create the tables <br />
+      and populate them with the information indicated above.
+    </span> <br />
+
+  </div>
+
+  <div class="column-left w3-border-0">
+    <span>&nbsp;</span>
+  </div>
+  <div class="column-center w3-code w3-button w3-opacity">
+    
+<div class="chunk" id="unnamed-chunk-2"><div class="rcode"><div class="source"><pre class="knitr r">        /*
+         Keycardsystem database
+         This project is where you show off your ability to 
+         (1) translate a business requirement into a database design, 
+         (2) design a database using one-to-many and many-to-many relationships, and 
+         (3) know when to use LEFT and/or RIGHT JOINs to build result sets <span class="hl kwa">for</span> reporting.
+        */
+        
+        DROP TABLE IF EXISTS Users;
+        DROP TABLE IF EXISTS Groupss;
+        DROP TABLE IF EXISTS Rooms;
+        DROP TABLE IF EXISTS UsersGroups;
+        DROP TABLE IF EXISTS GroupsRooms;
+        DROP TABLE IF EXISTS UsersGroupsRooms;
+        
+        CREATE TABLE <span class="hl kwd">Users</span> (
+          UserId int PRIMARY KEY,
+          UserName <span class="hl kwd">varchar</span>(30) NOT NULL
+        );
+        
+        INSERT INTO <span class="hl kwd">Users</span> ( UserId, UserName ) <span class="hl kwd">VALUES</span> ( 1, <span class="hl str">'Modesto'</span>);
+        INSERT INTO <span class="hl kwd">Users</span> ( UserId, UserName ) <span class="hl kwd">VALUES</span> ( 2, <span class="hl str">'Ayine'</span>);
+        INSERT INTO <span class="hl kwd">Users</span> ( UserId, UserName ) <span class="hl kwd">VALUES</span> ( 3, <span class="hl str">'Christopher'</span>);
+        INSERT INTO <span class="hl kwd">Users</span> ( UserId, UserName ) <span class="hl kwd">VALUES</span> ( 4, <span class="hl str">'Cheong'</span>);
+        INSERT INTO <span class="hl kwd">Users</span> ( UserId, UserName ) <span class="hl kwd">VALUES</span> ( 5, <span class="hl str">'Saulat'</span>);
+        INSERT INTO <span class="hl kwd">Users</span> ( UserId, UserName ) <span class="hl kwd">VALUES</span> ( 6, <span class="hl str">'Heidy'</span>);
+        
+        SELECT * FROM Users;
+        
+        CREATE TABLE <span class="hl kwd">Groupss</span> (
+          GroupId int PRIMARY KEY,
+          GroupName <span class="hl kwd">varchar</span>(30) NOT NULL
+        );
+        
+        INSERT INTO <span class="hl kwd">Groupss</span> ( GroupId, GroupName ) <span class="hl kwd">VALUES</span> ( 21, <span class="hl str">'I.T.'</span>);
+        INSERT INTO <span class="hl kwd">Groupss</span> ( GroupId, GroupName ) <span class="hl kwd">VALUES</span> ( 22, <span class="hl str">'Sales'</span>);
+        INSERT INTO <span class="hl kwd">Groupss</span> ( GroupId, GroupName ) <span class="hl kwd">VALUES</span> ( 23, <span class="hl str">'Administration'</span>);
+        INSERT INTO <span class="hl kwd">Groupss</span> ( GroupId, GroupName ) <span class="hl kwd">VALUES</span> ( 24, <span class="hl str">'Operations'</span>);
+        
+        SELECT * FROM Groupss;
+        
+        CREATE TABLE <span class="hl kwd">Rooms</span> (
+          RoomId int PRIMARY KEY,
+          RoomName <span class="hl kwd">varchar</span>(30) NOT NULL
+        );
+        
+        INSERT INTO <span class="hl kwd">Rooms</span> ( RoomId, RoomName ) <span class="hl kwd">VALUES</span> ( 101, <span class="hl str">'101'</span>);
+        INSERT INTO <span class="hl kwd">Rooms</span> ( RoomId, RoomName ) <span class="hl kwd">VALUES</span> ( 102, <span class="hl str">'102'</span>);
+        INSERT INTO <span class="hl kwd">Rooms</span> ( RoomId, RoomName ) <span class="hl kwd">VALUES</span> ( 103, <span class="hl str">'Auditorium A'</span>);
+        INSERT INTO <span class="hl kwd">Rooms</span> ( RoomId, RoomName ) <span class="hl kwd">VALUES</span> ( 104, <span class="hl str">'Auditorium B'</span>);
+        
+        SELECT * FROM Rooms;
+        
+        CREATE TABLE <span class="hl kwd">UsersGroups</span> (
+          UgId int PRIMARY KEY,
+          UserId int NOT <span class="hl kwa">NULL</span>,
+          GroupId int NOT NULL
+        );
+        
+        INSERT INTO <span class="hl kwd">UsersGroups</span> ( UgId, UserId, GroupId ) <span class="hl kwd">VALUES</span> ( 121, 1, 21);
+        INSERT INTO <span class="hl kwd">UsersGroups</span> ( UgId, UserId, GroupId ) <span class="hl kwd">VALUES</span> ( 122, 2, 21);
+        INSERT INTO <span class="hl kwd">UsersGroups</span> ( UgId, UserId, GroupId ) <span class="hl kwd">VALUES</span> ( 123, 3, 22);
+        INSERT INTO <span class="hl kwd">UsersGroups</span> ( UgId, UserId, GroupId ) <span class="hl kwd">VALUES</span> ( 124, 4, 22);
+        
+        SELECT * FROM UsersGroups;
+
+        CREATE TABLE <span class="hl kwd">GroupsRooms</span> (
+          GrId int PRIMARY KEY,
+          GroupId int NOT <span class="hl kwa">NULL</span>,
+          RoomId int NOT NULL
+        );
+        
+        INSERT INTO <span class="hl kwd">GroupsRooms</span> ( GrId, GroupId, RoomId ) <span class="hl kwd">VALUES</span> ( 1101, 21, 101);
+        INSERT INTO <span class="hl kwd">GroupsRooms</span> ( GrId, GroupId, RoomId ) <span class="hl kwd">VALUES</span> ( 1102, 21, 102);
+        INSERT INTO <span class="hl kwd">GroupsRooms</span> ( GrId, GroupId, RoomId ) <span class="hl kwd">VALUES</span> ( 1103, 22, 102);
+        INSERT INTO <span class="hl kwd">GroupsRooms</span> ( GrId, GroupId, RoomId ) <span class="hl kwd">VALUES</span> ( 1104, 22, 103);
+        
+        SELECT * FROM GroupsRooms;
+        
+        
+        CREATE TABLE <span class="hl kwd">UsersGroupsRooms</span> (
+          UgrId int PRIMARY KEY,
+          UserId int NOT <span class="hl kwa">NULL</span>,
+          GroupId int NOT <span class="hl kwa">NULL</span>,
+          RoomId int NOT NULL
+        );
+        
+        INSERT INTO <span class="hl kwd">UsersGroupsRooms</span> ( UgrId, UserId, GroupId, RoomId ) <span class="hl kwd">VALUES</span> ( 2101, 1, 21, 101);
+        INSERT INTO <span class="hl kwd">UsersGroupsRooms</span> ( UgrId, UserId, GroupId, RoomId ) <span class="hl kwd">VALUES</span> ( 2102, 2, 21, 102);
+        INSERT INTO <span class="hl kwd">UsersGroupsRooms</span> ( UgrId, UserId, GroupId, RoomId ) <span class="hl kwd">VALUES</span> ( 2103, 3, 22, 102);
+        INSERT INTO <span class="hl kwd">UsersGroupsRooms</span> ( UgrId, UserId, GroupId, RoomId ) <span class="hl kwd">VALUES</span> ( 2104, 4, 22, 103);
+        
+        SELECT * FROM UsersGroupsRooms; 
+      
+</pre></div>
+<div class="error"><pre class="knitr r">## Error: &lt;text&gt;:1:9: unexpected '/'
+## 1:         /
+##             ^
+</pre></div>
+</div></div>
+    
+  </div>
+  
+  <a class="w3-button w3-theme w3-blue w3-opacity w3-hover-white" href="https://dev.mysql.com/doc/workbench/en/wb-creating-eer-diagram.html" target="_blank">Try it Yourself</a>
+</div>
+<!-- END QUESTION 2 -->
+
+<p class="w3-white">&nbsp;</p>
+
+<div class="w3-container w3-padding-large w3-section w3-light-grey">
+<!-- QUESTION 3 -->
+  <div id="3" class="column-left w3-code cssHigh notranslate w3-hover-sand w3-border-0">
+    <span>3</span>
+  </div>
+  <div class="column-center w3-code w3-button w3-opacity">
+    <span class="h1-maroon">
+      <strong>Next,</strong>
+    </span> <br />
+    <span>
+      Write SELECT statements that provide the following information: <br />
+      • All groups, and the users in each group. <br />
+      &nbsp;&nbsp;A group should appear even if there are no users assigned to the group. <br />
+      • All rooms, and the groups assigned to each room.  
+      &nbsp;&nbsp;The rooms should appear even if no groups have been assigned to them. <br />
+      • A list of users, the groups that they belong to, and the rooms to which they are assigned. <br />
+      &nbsp;&nbsp;This should be sorted alphabetically by user, then by group, then by room.
+    </span> <br /><br />
+
+  <div class="column-left w3-border-0">
+    <span>&nbsp;</span>
+  </div>
+
+<div class="chunk" id="unnamed-chunk-3"><div class="rcode"><div class="source"><pre class="knitr r"><span class="hl std">MySQLSelect</span> <span class="hl kwb">=</span> <span class="hl str">&quot;
+      SELECT g.GroupName, u.UserName FROM Users u INNER JOIN UsersGroups ug 
+      	ON u.UserId = ug.UserId RIGHT JOIN Groupss g 
+      	ON ug.GroupId = g.GroupId;
+      
+      SELECT r.RoomName, g.GroupName FROM Groupss g INNER JOIN GroupsRooms gr 
+      	ON g.GroupId = gr.GroupId RIGHT JOIN Rooms r 
+      	ON gr.RoomId = r.RoomId;
+      
+      SELECT u.UserName, g.GroupName, r.RoomName 
+        FROM Users u INNER JOIN UsersGroupsRooms ugr 
+      		ON u.UserId = ugr.UserId INNER JOIN Groupss g
+      		ON ugr.GroupId = g.GroupId INNER JOIN Rooms r 
+      		ON ugr.RoomId = r.RoomId
+        ORDER BY UserName, GroupName, RoomName;
+        &quot;</span>
+</pre></div>
+</div></div>
+    
+  
+  <a class="w3-button w3-theme w3-blue w3-opacity w3-hover-white" href="https://dev.mysql.com/doc/workbench/en/wb-creating-eer-diagram.html" target="_blank">Try it Yourself</a>
+</div>
+<!-- END QUESTION 3 -->
+
+<p class="w3-white">&nbsp;</p>
+
+<footer class="w3-container w3-padding-large w3-light-grey w3-justify w3-opacity">
+  <p><nav>
+  <a href="https://sps.cuny.edu/admissions" target="_blank"><span class="w3-padding w3-hover-blue">ADMISSIONS</span></a> |
+  <a href="https://sps.cuny.edu/about" target="_blank"><span class="w3-padding w3-hover-blue">ABOUT</span></a>
+  </nav></p>
+  
+  <p><nav>
+  <span class="w3-padding"><i>Please email to: </i> <a class="w3-text-indigo" href="mailto:kleber.perez@live.com"><strong>kleber.perez@live.com</strong></a> <i>for any suggestion.</i></span>
+  <br />
+  <span class="w3-padding">SQL Bridge Assignment 3 - MSDS 2019 Program.</span>
+  </nav></p>
+</footer>
+
+</div>
+
+<div><br /><br /></div>
+
+
+<script>
+function w3_open() {
+  document.getElementById("mySidebar").style.display = "block";
+  document.getElementById("myOverlay").style.display = "block";
+}
+
+function w3_close() {
+  document.getElementById("mySidebar").style.display = "none";
+  document.getElementById("myOverlay").style.display = "none";
+}
+
+openNav("nav01");
+function openNav(id) {
+  document.getElementById("nav01").style.display = "none";
+  document.getElementById("nav02").style.display = "none";
+  document.getElementById("nav03").style.display = "none";
+  document.getElementById(id).style.display = "block";
+}
+</script>
+
+<script src="https://www.w3schools.com/lib/w3codecolor.js"></script>
+
+<script>
+w3CodeColor();
+</script>
+
+
+</body>
+</html>
